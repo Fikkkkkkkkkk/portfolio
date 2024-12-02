@@ -154,9 +154,26 @@
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-3xl font-bold text-center mb-12 text-[#DCD7C9]">About Me</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="flex justify-center">
-                    <img src="https://via.placeholder.com/300" alt="Profile" class="rounded-lg shadow-lg">
+                <!-- Image wrapper with double border effect -->
+                <div class="flex justify-center items-center p-4">
+                    <div class="relative group">
+                        <!-- Outer border -->
+                        <div class="absolute -inset-4 border-4 border-[#A27B5C] rounded-lg transform group-hover:scale-110 transition-transform duration-300"></div>
+                        
+                        <!-- Inner border -->
+                        <div class="absolute -inset-2 border-4 border-[#3F4E4F] rounded-lg transform group-hover:scale-110 transition-transform duration-300"></div>
+                        
+                        <!-- Image container - added flex and centering -->
+                        <div class="relative bg-[#2C3639] rounded-lg flex justify-center items-center">
+                            <img 
+                                src="Fikri.jpeg" 
+                                alt="Profile" 
+                                class="rounded-lg shadow-lg w-80 h-80 object-cover transform transition-transform duration-300 group-hover:scale-105"
+                            >
+                        </div>
+                    </div>
                 </div>
+                <!-- Skills section -->
                 <div class="space-y-4 bg-[#3F4E4F] p-6 rounded-lg">
                     <p class="text-[#DCD7C9]">
                         Hello! I'm a web developer passionate about creating beautiful and functional websites.
