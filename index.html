@@ -1,571 +1,105 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description" content="Explore the portfolio, web applications, and developer projects of Fikri.">
-    <meta name="keywords" content="web developer, portfolio, projects">
-    <meta name="author" content="Mohamad Fikri">
-    
-    <meta property="og:title" content="Fikri's Portfolio">
-    <meta property="og:description" content="Explore my personal developer portfolio.">
-    <meta property="og:url" content="https://fikkkkkkkkkk.site/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="URL to your image">
-
-    <link rel="canonical" href="https://fikkkkkkkkkk.site/" />
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Mohamad Fikri</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
-    <style>
-        ::-webkit-scrollbar {
-            display: none;
-        }
-        html {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .swiper {
-            width: 100%;
-            padding-top: 50px;
-            padding-bottom: 50px;
-        }
-
-        .swiper-slide {
-            background-position: center;
-            background-size: cover;
-            width: 300px;
-            height: 400px;
-        }
-
-        /* Animasi untuk skill bars */
-        .skill-bar .progress-bar {
-            /* Tetapkan width awal kepada 0 */
-            width: 0;
-            /* Tambah animasi */
-            animation: fillBar 1.5s ease forwards;
-        }
-
-        /* Definisi animasi fillBar */
-        @keyframes fillBar {
-            from {
-                width: 0;
-            }
-            to {
-                /* width akan diambil dari style inline */
-                width: var(--target-width);
-            }
-        }
-
-        /* Add these new styles for pagination */
-        .swiper-pagination-bullet {
-            /* Default bullet style */
-            background-color: #3F4E4F !important;
-            opacity: 0.5;
-        }
-
-        .swiper-pagination-bullet-active {
-            /* Active bullet style */
-            background-color: #A27B5C !important;
-            opacity: 1;
-        }
-
-        .halftone-bg {
-            /* Create the base background */
-            background-color: #2C3639;
-            /* Create a radial gradient pattern that repeats */
-            background-image: 
-                /* Add linear gradient that fades to the base color */
-                linear-gradient(to bottom, 
-                    rgba(44, 54, 57, 0) 0%,
-                    rgba(44, 54, 57, 0.9) 90%,
-                    rgba(44, 54, 57, 1) 100%
-                ),
-                /* Original halftone pattern */
-                radial-gradient(#A27B5C 1.5px, transparent 1.5px);
-            /* Reduce the size to create more dots (changed from 30px to 20px) */
-            background-size: 
-                /* Gradient size (covers full width/height) */
-                100% 100%,
-                /* Halftone pattern size */
-                15px 15px;
-            /* Add a subtle animation */
-            animation: moveHalftone 60s linear infinite;
-            /* Make it slightly transparent */
-            opacity: 0.3;
-            /* Position it absolutely to cover the whole section */
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        @keyframes moveHalftone {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 100% 100%;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f4f0e7">
+  <meta name="description" content="Mohamad Fikri is a Computer Science student interested in front-end development.">
+  <meta name="author" content="Mohamad Fikri">
+  <meta property="og:title" content="Mohamad Fikri — Front-end Developer Portfolio">
+  <meta property="og:description" content="A curious Computer Science student exploring front-end development and open to collaboration.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portfolio.fikkkkkkkkkk.site/">
+  <meta property="og:image" content="https://portfolio.fikkkkkkkkkk.site/Fikri-cartoon.png">
+  <link rel="canonical" href="https://portfolio.fikkkkkkkkkk.site/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2212%22 fill=%22%231e5eff%22/><text x=%2232%22 y=%2243%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2234%22 font-weight=%22700%22 fill=%22white%22>F</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>Mohamad Fikri — Portfolio</title>
 </head>
-<body class="bg-[#2C3639]">
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="fixed bottom-4 right-4 bg-[#A27B5C] text-[#DCD7C9] p-4 rounded-full shadow-lg opacity-0 transition-opacity duration-300 hover:bg-[#3F4E4F] invisible z-50">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Navigation Bar -->
-    <nav class="bg-[#3F4E4F] shadow-lg fixed w-full z-50">
-        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center py-4">
-            <div class="text-xl font-bold text-[#DCD7C9]">
-                Fikri
-            </div>
-            <!-- Burger Menu Button -->
-            <button id="burgerMenu" class="text-[#DCD7C9] md:hidden focus:outline-none z-50">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-            <!-- Desktop Navigation -->
-            <div class="hidden md:flex md:flex-row md:space-x-6">
-                <a href="#home" class="text-[#DCD7C9] hover:text-[#A27B5C] transition-colors">Home</a>
-                <a href="#about" class="text-[#DCD7C9] hover:text-[#A27B5C] transition-colors">About</a>
-                <a href="#projects" class="text-[#DCD7C9] hover:text-[#A27B5C] transition-colors">Projects</a>
-                <a href="#contact" class="text-[#DCD7C9] hover:text-[#A27B5C] transition-colors">Contact</a>
-            </div>
-        </div>
-        
-        <!-- Mobile Navigation Menu -->
-        <div id="mobileNav" class="fixed top-0 right-0 h-full w-64 bg-[#3F4E4F] transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
-            <div class="flex flex-col pt-20 px-6 space-y-6">
-                <a href="#home" class="text-[#DCD7C9] hover:text-[#A27B5C] transition-colors">Home</a>
-                <a href="#about" class="text-[#DCD7C9] hover:text-[#A27B5C] transition-colors">About</a>
-                <a href="#projects" class="text-[#DCD7C9] hover:text-[#A27B5C] transition-colors">Projects</a>
-                <a href="#contact" class="text-[#DCD7C9] hover:text-[#A27B5C] transition-colors">Contact</a>
-            </div>
-        </div>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="wordmark" href="#top" aria-label="Mohamad Fikri, home">Mohamad Fikri<span>.</span></a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span class="sr-only">Toggle navigation</span></button>
+      <div class="nav-links" id="navLinks">
+        <a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false"><span class="theme-icon" aria-hidden="true"></span><span id="themeLabel">Dark</span></button>
+      </div>
     </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center bg-[#2C3639] pt-24 md:pt-16 relative">
-        <div class="halftone-bg"></div>
-        <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
-            <h1 class="text-2xl md:text-4xl font-bold mb-4 text-[#DCD7C9]">WELCOME TO MY PORTFOLIO</h1>
-            <p class="text-lg md:text-xl mb-8 text-[#A27B5C]">My name is Mohamad Fikri, <br> I'm a passionate web developer creating amazing digital experiences.</p>
-            <button class="bg-[#A27B5C] text-[#DCD7C9] hover:bg-[#3F4E4F] px-6 py-2 rounded-full transition-colors">
-                Get in Touch
-            </button>
+  <main id="main">
+    <section class="hero container" id="top">
+      <div class="hero-copy" data-reveal>
+        <p class="eyebrow">Computer Science student</p>
+        <h1>I’m Fikri.<br>Curious about the <em>human</em> side of the web.</h1>
+        <p class="hero-intro">I’m a Computer Science student who enjoys exploring new tools, ideas, and ways to build for the web. I’m especially interested in front-end development, learning through projects, and collaborating with others.</p>
+        <div class="social-links" aria-label="Social links">
+          <a href="https://github.com/Fikkkkkkkkkk" target="_blank" rel="noopener noreferrer" aria-label="Fikri on GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .8a11.4 11.4 0 0 0-3.6 22.2c.6.1.8-.2.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.4-1.3-5.4-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.1 1.2a10.7 10.7 0 0 1 5.7 0c2.2-1.5 3.1-1.2 3.1-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.4 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.4 11.4 0 0 0 12 .8Z"/></svg><span>GitHub</span></a>
+          <a href="https://www.linkedin.com/in/mohamadfikri" target="_blank" rel="noopener noreferrer" aria-label="Fikri on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.3 7.8H1.7V22h3.6V7.8ZM3.5 2A2.1 2.1 0 1 0 3.5 6.2 2.1 2.1 0 0 0 3.5 2ZM22.3 13.8c0-4.3-2.3-6.3-5.4-6.3-2.5 0-3.6 1.4-4.2 2.3v-2H9.1V22h3.6v-7c0-1.8.4-3.6 2.7-3.6 2.3 0 2.3 2.1 2.3 3.8V22h3.6l1-8.2Z"/></svg><span>LinkedIn</span></a>
+          <a href="#contact" aria-label="Go to contact form"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4.5h20v15H2v-15Zm2 2v.4l8 5.4 8-5.4v-.4H4Zm16 11V9.3l-8 5.4-8-5.4v8.2h16Z"/></svg><span>Message</span></a>
         </div>
+      </div>
+      <div class="portrait-wrap" data-reveal>
+        <p class="portrait-note">Click the portrait</p>
+        <button class="avatar-button" id="avatarButton" type="button" aria-label="Say hello to Fikri">
+          <span class="speech-bubble" id="speechBubble" aria-hidden="true">Hello!</span>
+          <img src="Fikri-cartoon.png" alt="Illustrated portrait of Mohamad Fikri" width="1254" height="1254">
+        </button>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="flex items-center bg-[#2C3639] pt-24 md:pt-16">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-[#DCD7C9]">About Me</h2>
-            <div class="flex flex-col md:grid md:grid-cols-2 gap-8">
-                <!-- Image wrapper with double border effect -->
-                <div class="flex justify-center items-center p-4">
-                    <div class="relative group">
-                        <!-- Outer border -->
-                        <div class="absolute -inset-4 border-4 border-[#A27B5C] rounded-lg transform group-hover:scale-110 transition-transform duration-300"></div>
-                        
-                        <!-- Inner border -->
-                        <div class="absolute -inset-2 border-4 border-[#3F4E4F] rounded-lg transform group-hover:scale-110 transition-transform duration-300"></div>
-                        
-                        <!-- Image container - added flex and centering -->
-                        <div class="relative bg-[#2C3639] rounded-lg flex justify-center items-center">
-                            <img 
-                                src="Fikri.jpeg" 
-                                alt="Profile" 
-                                class="rounded-lg shadow-lg w-80 h-80 object-cover transform transition-transform duration-300 group-hover:scale-105"
-                            >
-                        </div>
-                    </div>
-                </div>
-                <!-- Skills section -->
-                <div class="space-y-4 bg-[#3F4E4F] p-6 rounded-lg">
-                    <p class="text-[#DCD7C9]">
-                        Hello! I'm a web developer passionate about creating beautiful and functional websites.
-                    </p>
-                    <div class="space-y-6">
-                        <!-- HTML Skill Bar -->
-                        <div class="skill-bar flex items-center gap-4">
-                            <i class="fa-brands fa-html5 text-2xl text-[#DCD7C9] w-8"></i>
-                            <div class="flex-grow">
-                                <div class="w-full bg-[#2C3639] rounded-full h-2.5">
-                                    <div class="progress-bar bg-[#A27B5C] h-2.5 rounded-full" style="--target-width: 80%"></div>
-                                </div>
-                            </div>
-                            <span class="text-[#DCD7C9] text-sm w-12">80%</span>
-                        </div>
-
-                        <!-- CSS Skill Bar -->
-                        <div class="skill-bar flex items-center gap-4">
-                            <i class="fa-brands fa-css3-alt text-2xl text-[#DCD7C9] w-8"></i>
-                            <div class="flex-grow">
-                                <div class="w-full bg-[#2C3639] rounded-full h-2.5">
-                                    <div class="progress-bar bg-[#A27B5C] h-2.5 rounded-full" style="--target-width: 75%"></div>
-                                </div>
-                            </div>
-                            <span class="text-[#DCD7C9] text-sm w-12">75%</span>
-                        </div>
-
-                        <!-- JavaScript Skill Bar -->
-                        <div class="skill-bar flex items-center gap-4">
-                            <i class="fa-brands fa-js text-2xl text-[#DCD7C9] w-8"></i>
-                            <div class="flex-grow">
-                                <div class="w-full bg-[#2C3639] rounded-full h-2.5">
-                                    <div class="progress-bar bg-[#A27B5C] h-2.5 rounded-full" style="--target-width: 45%"></div>
-                                </div>
-                            </div>
-                            <span class="text-[#DCD7C9] text-sm w-12">45%</span>
-                        </div>
-
-                        <!-- PHP Skill Bar -->
-                        <div class="skill-bar flex items-center gap-4">
-                            <i class="fa-brands fa-php text-2xl text-[#DCD7C9] w-8"></i>
-                            <div class="flex-grow">
-                                <div class="w-full bg-[#2C3639] rounded-full h-2.5">
-                                    <div class="progress-bar bg-[#A27B5C] h-2.5 rounded-full" style="--target-width: 50%"></div>
-                                </div>
-                            </div>
-                            <span class="text-[#DCD7C9] text-sm w-12">50%</span>
-                        </div>
-
-                        <!-- Download CV Button - Added after skill bars -->
-                        <div class="pt-6 flex justify-center">
-                            <a href="/path/to/your/cv.pdf" 
-                               download 
-                               class="bg-[#A27B5C] text-[#DCD7C9] px-6 py-3 rounded-full hover:bg-[#3F4E4F] transition-colors flex items-center gap-2">
-                                <i class="fas fa-download"></i>
-                                Download CV
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <section class="projects section" id="projects">
+      <div class="container">
+        <header class="section-heading" data-reveal><p class="eyebrow">Selected work</p><h2>I learn best by making things.</h2><p>This section will document the projects I explore, the choices I make, and what I learn along the way.</p></header>
+        <article class="project-feature project-placeholder" tabindex="0" data-reveal aria-label="Project information needed">
+          <div class="project-preview">
+            <div class="preview-browser" aria-hidden="true"><div class="browser-bar"><i></i><i></i><i></i></div><div class="preview-layout"><span></span><span></span><span></span><span></span></div></div>
+            <span class="preview-label">Project preview</span>
+          </div>
+          <div class="project-copy">
+            <p class="project-index">Your first case study</p>
+            <h3>Project details needed</h3>
+            <p>The existing repository only contains generic project placeholders. Add a real project name, screenshot, short description, technology stack, live demo URL, and source link here.</p>
+            <div class="tech-list" aria-label="Technology information needed"><span>Stack to add</span><span>Links to add</span></div>
+            <p class="editor-note">This is intentionally marked for completion rather than filled with invented work.</p>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="flex items-center bg-[#2C3639] pt-24 md:pt-16">
-        <div class="w-full px-4">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-[#DCD7C9]">My Projects</h2>
-            
-            <!-- Swiper container -->
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <!-- Project 1 -->
-                    <div class="swiper-slide">
-                        <div class="bg-[#3F4E4F] rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
-                            <img src="https://via.placeholder.com/300x200" alt="Project 1" class="w-full">
-                            <div class="p-6 flex flex-col flex-grow">
-                                <div>
-                                    <h3 class="font-bold text-xl mb-2 text-[#A27B5C]">Project 1</h3>
-                                    <p class="text-[#DCD7C9]">Description of project 1 goes here.</p>
-                                </div>
-                                <!-- Button container pushed to bottom -->
-                                <div class="flex justify-center w-full mt-auto pt-4">
-                                    <button class="w-full bg-[#A27B5C] text-[#DCD7C9] px-4 py-2 rounded hover:bg-[#3F4E4F] transition-colors">
-                                        View Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="swiper-slide">
-                        <div class="bg-[#3F4E4F] rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
-                            <img src="https://via.placeholder.com/300x200" alt="Project 2" class="w-full">
-                            <div class="p-6 flex flex-col flex-grow">
-                                <div>
-                                    <h3 class="font-bold text-xl mb-2 text-[#A27B5C]">Project 2</h3>
-                                    <p class="text-[#DCD7C9]">Description of project 2 goes here.</p>
-                                </div>
-                                <!-- Button container pushed to bottom -->
-                                <div class="flex justify-center w-full mt-auto pt-4">
-                                    <button class="w-full bg-[#A27B5C] text-[#DCD7C9] px-4 py-2 rounded hover:bg-[#3F4E4F] transition-colors">
-                                        View Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="swiper-slide">
-                        <div class="bg-[#3F4E4F] rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
-                            <img src="https://via.placeholder.com/300x200" alt="Project 3" class="w-full">
-                            <div class="p-6 flex flex-col flex-grow">
-                                <div>
-                                    <h3 class="font-bold text-xl mb-2 text-[#A27B5C]">Project 3</h3>
-                                    <p class="text-[#DCD7C9]">Description of project 3 goes here.</p>
-                                </div>
-                                <!-- Button container pushed to bottom -->
-                                <div class="flex justify-center w-full mt-auto pt-4">
-                                    <button class="w-full bg-[#A27B5C] text-[#DCD7C9] px-4 py-2 rounded hover:bg-[#3F4E4F] transition-colors">
-                                        View Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 4 -->
-                    <div class="swiper-slide">
-                        <div class="bg-[#3F4E4F] rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
-                            <img src="https://via.placeholder.com/300x200" alt="Project 4" class="w-full">
-                            <div class="p-6 flex flex-col flex-grow">
-                                <div>
-                                    <h3 class="font-bold text-xl mb-2 text-[#A27B5C]">Project 4</h3>
-                                    <p class="text-[#DCD7C9]">Description of project 4 goes here.</p>
-                                </div>
-                                <!-- Button container pushed to bottom -->
-                                <div class="flex justify-center w-full mt-auto pt-4">
-                                    <button class="w-full bg-[#A27B5C] text-[#DCD7C9] px-4 py-2 rounded hover:bg-[#3F4E4F] transition-colors">
-                                        View Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 5 -->
-                    <div class="swiper-slide">
-                        <div class="bg-[#3F4E4F] rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
-                            <img src="https://via.placeholder.com/300x200" alt="Project 5" class="w-full">
-                            <div class="p-6 flex flex-col flex-grow">
-                                <div>
-                                    <h3 class="font-bold text-xl mb-2 text-[#A27B5C]">Project 5</h3>
-                                    <p class="text-[#DCD7C9]">Description of project 5 goes here.</p>
-                                </div>
-                                <!-- Button container pushed to bottom -->
-                                <div class="flex justify-center w-full mt-auto pt-4">
-                                    <button class="w-full bg-[#A27B5C] text-[#DCD7C9] px-4 py-2 rounded hover:bg-[#3F4E4F] transition-colors">
-                                        View Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 6 -->
-                    <div class="swiper-slide">
-                        <div class="bg-[#3F4E4F] rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
-                            <img src="https://via.placeholder.com/300x200" alt="Project 6" class="w-full">
-                            <div class="p-6 flex flex-col flex-grow">
-                                <div>
-                                    <h3 class="font-bold text-xl mb-2 text-[#A27B5C]">Project 6</h3>
-                                    <p class="text-[#DCD7C9]">Description of project 6 goes here.</p>
-                                </div>
-                                <!-- Button container pushed to bottom -->
-                                <div class="flex justify-center w-full mt-auto pt-4">
-                                    <button class="w-full bg-[#A27B5C] text-[#DCD7C9] px-4 py-2 rounded hover:bg-[#3F4E4F] transition-colors">
-                                        View Project
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    
-                </div>
-                
-                <!-- Pagination dengan Tailwind classes -->
-                <div class="swiper-pagination [&>.swiper-pagination-bullet]:bg-[#3F4E4F] [&>.swiper-pagination-bullet]:opacity-80 [&>.swiper-pagination-bullet-active]:bg-[#A27B5C] [&>.swiper-pagination-bullet-active]:opacity-100"></div>
-            </div>
+    <section class="about section" id="about">
+      <div class="container about-grid">
+        <div class="about-heading" data-reveal><p class="eyebrow">About</p><h2>Always curious.<br>Still learning.</h2></div>
+        <div class="about-copy" data-reveal>
+          <p class="about-lead">I like exploring new technologies and turning what I learn into small, practical web experiences.</p>
+          <p>I’m drawn to projects that give me room to ask questions, experiment, and improve as I go. I enjoy sharing ideas, learning from different perspectives, and contributing wherever I can.</p>
+          <div class="skills" aria-label="Current skills"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span><span>Responsive Design</span><span>Accessibility</span><span>Git &amp; GitHub</span><span>UI Implementation</span></div>
         </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="flex items-center bg-[#2C3639] pt-24 pb-16 md:pt-16">
-        <div class="w-full md:w-1/2 mx-auto px-4">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 text-[#DCD7C9]">Contact Me</h2>
-            <div class="bg-[#3F4E4F] p-4 md:p-8 rounded-lg mb-8">
-                <form class="space-y-6">
-                    <div class="flex flex-col md:flex-row gap-4">
-                        <div class="w-full md:w-1/2">
-                            <label class="block text-[#DCD7C9] mb-2" for="name">Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 bg-[#2C3639] border border-[#A27B5C] rounded-lg focus:outline-none focus:border-[#DCD7C9] text-[#DCD7C9]">
-                        </div>
-                        <div class="w-full md:w-1/2">
-                            <label class="block text-[#DCD7C9] mb-2" for="email">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 bg-[#2C3639] border border-[#A27B5C] rounded-lg focus:outline-none focus:border-[#DCD7C9] text-[#DCD7C9]">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-[#DCD7C9] mb-2" for="message">Message</label>
-                        <textarea id="message" rows="4" class="w-full px-4 py-2 bg-[#2C3639] border border-[#A27B5C] rounded-lg focus:outline-none focus:border-[#DCD7C9] text-[#DCD7C9]"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-[#A27B5C] text-[#DCD7C9] py-2 px-4 rounded-lg hover:bg-[#3F4E4F] transition-colors">
-                        Send Message
-                    </button>
-                </form>
-            </div>
-        </div>
+    <section class="contact section" id="contact">
+      <div class="container contact-layout" data-reveal>
+        <div class="contact-intro"><p class="eyebrow">Contact</p><h2>Let’s learn and build together.</h2><p>I’m interested in collaborating on front-end projects, exchanging ideas, and learning through real work. Use the form to get in touch.</p></div>
+        <form class="contact-form" id="contactForm">
+          <div class="form-heading"><span>Start a conversation</span><small>All fields are required</small></div>
+          <div class="form-pair">
+            <div class="form-row"><label for="contactName">Your name</label><input id="contactName" name="name" type="text" autocomplete="name" placeholder="How should I address you?" required></div>
+            <div class="form-row"><label for="contactEmail">Your email</label><input id="contactEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+          </div>
+          <div class="form-row form-row--message"><label for="contactMessage">What would you like to explore together?</label><textarea id="contactMessage" name="message" rows="5" placeholder="Tell me a little about your idea, project, or opportunity…" required></textarea></div>
+          <div class="form-footer"><button class="form-submit" type="submit">Send message</button><p class="form-status" id="formStatus" aria-live="polite"></p></div>
+        </form>
+      </div>
     </section>
+  </main>
 
-    <!-- Footer -->
-    <footer class="bg-[#3F4E4F] text-[#DCD7C9] py-8">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:text-[#A27B5C] transition-colors">
-                        <i class="fab fa-github text-2xl"></i>
-                    </a>
-                    <a href="#" class="hover:text-[#A27B5C] transition-colors">
-                        <i class="fab fa-linkedin text-2xl"></i>
-                    </a>
-                    <a href="#" class="hover:text-[#A27B5C] transition-colors">
-                        <i class="fab fa-twitter text-2xl"></i>
-                    </a>
-                    <a href="#" class="hover:text-[#A27B5C] transition-colors">
-                        <i class="fab fa-instagram text-2xl"></i>
-                    </a>
-                    <a href="#" class="hover:text-[#A27B5C] transition-colors">
-                        <!-- Thread icon using Font Awesome -->
-                        <i class="fab fa-threads text-2xl"></i>
-                    </a>
-                </div>
-                <p class="text-center md:text-left">&copy; 2024 Built by Fikri, assisted by Mr, AI. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        // Smooth Scrolling Script
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const swiper = new Swiper(".mySwiper", {
-                grabCursor: true,
-                centeredSlides: true,
-                slidesPerView: "auto",
-                spaceBetween: 50,
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true,
-                },
-                speed: 1500,
-                loop: true,
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-                breakpoints: {
-                    // when window width is >= 320px
-                    320: {
-                        slidesPerView: 1,
-                        spaceBetween: 20
-                    },
-                    // when window width is >= 640px
-                    640: {
-                        slidesPerView: "auto",
-                        spaceBetween: 30
-                    },
-                    // when window width is >= 1024px
-                    1024: {
-                        slidesPerView: "auto",
-                        spaceBetween: 50
-                    }
-                }
-            });
-        });
-
-        // Dapatkan button element
-        const backToTopButton = document.getElementById('backToTop');
-
-        // Fungsi untuk scroll ke atas dengan smooth
-        backToTopButton.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Fungsi untuk show/hide button berdasarkan scroll position
-        window.addEventListener('scroll', function() {
-            // Show button bila scroll lebih dari 300px
-            if (window.scrollY > 300) {
-                backToTopButton.classList.remove('invisible', 'opacity-0');
-                backToTopButton.classList.add('opacity-100');
-            } else {
-                // Hide button bila scroll kurang dari 300px
-                backToTopButton.classList.remove('opacity-100');
-                backToTopButton.classList.add('opacity-0');
-                // Tunggu transition selesai sebelum tambah invisible
-                setTimeout(() => {
-                    if (window.scrollY <= 300) {
-                        backToTopButton.classList.add('invisible');
-                    }
-                }, 300);
-            }
-        });
-
-        // Buat Intersection Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // Jika element dalam viewport
-                if (entry.isIntersecting) {
-                    // Dapatkan semua progress bars dalam skill bar tersebut
-                    entry.target.querySelectorAll('.progress-bar').forEach(bar => {
-                        // Reset animation
-                        bar.style.animation = 'none';
-                        bar.offsetHeight; // Trigger reflow
-                        bar.style.animation = null;
-                    });
-                }
-            });
-        });
-
-        // Observe semua skill bars
-        document.querySelectorAll('.skill-bar').forEach(bar => {
-            observer.observe(bar);
-        });
-
-        const burgerMenu = document.getElementById('burgerMenu');
-        const mobileNav = document.getElementById('mobileNav');
-        let isOpen = false;
-
-        burgerMenu.addEventListener('click', () => {
-            isOpen = !isOpen;
-            
-            // Toggle menu
-            if (isOpen) {
-                mobileNav.classList.remove('translate-x-full');
-                burgerMenu.innerHTML = '<i class="fas fa-times text-2xl"></i>';
-            } else {
-                mobileNav.classList.add('translate-x-full');
-                burgerMenu.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
-            }
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('#mobileNav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.add('translate-x-full');
-                burgerMenu.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
-                isOpen = false;
-            });
-        });
-    </script>
+  <footer class="site-footer"><div class="container footer-inner"><p>© <span id="year"></span> Mohamad Fikri</p><p>Designed and built with HTML, CSS, and JavaScript.</p><a href="#top">Back to top</a></div></footer>
+  <script src="script.js"></script>
 </body>
 </html>
