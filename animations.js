@@ -1,4 +1,4 @@
-import { animate, hover, inView, stagger } from 'https://cdn.jsdelivr.net/npm/motion@12.23.24/+esm';
+import { animate, hover, inView } from 'https://cdn.jsdelivr.net/npm/motion@12.23.24/+esm';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const revealElements = [...document.querySelectorAll('[data-reveal]')];
@@ -13,12 +13,18 @@ if (reduceMotion) {
 
   // Motion handles the larger component entrances.
   revealElements.forEach(element => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(28px)';
+    if (element.matches('.hero-copy, .portrait-wrap')) {
+      animate(element, { y: [18, 0] }, { duration: 0.65, easing: [0.22, 1, 0.36, 1] });
+      return;
+    }
+    const stagedGroup = element.closest('.focus-grid, .methods-flow');
+    const stagedDelay = stagedGroup
+      ? [...stagedGroup.querySelectorAll('[data-reveal]')].indexOf(element) * 0.07
+      : 0;
     const reveal = () => {
       animate(element, { opacity: [0, 1], y: [28, 0] }, {
-        duration: 0.75,
-        delay: element.matches('.portrait-wrap') ? 0.12 : 0,
+        duration: 0.62,
+        delay: stagedDelay,
         easing: [0.22, 1, 0.36, 1]
       });
     };
@@ -31,12 +37,12 @@ if (reduceMotion) {
   });
 
   // Motion also adds a small, tactile lift to interactive surfaces.
-  const hoverTargets = document.querySelectorAll('.social-links a, .theme-toggle, .form-submit, .project-feature, .skills span');
+  const hoverTargets = document.querySelectorAll('.social-links a, .primary-cta, .theme-toggle, .form-submit, .project-card');
   hoverTargets.forEach(element => {
     element.dataset.motionHover = '';
     hover(element, () => {
-      animate(element, { y: -4, scale: 1.015 }, { duration: 0.22, easing: 'ease-out' });
-      return () => animate(element, { y: 0, scale: 1 }, { duration: 0.28, easing: 'ease-out' });
+      animate(element, { y: -3, scale: 1.012 }, { duration: 0.16, easing: [0.22, 1, 0.36, 1] });
+      return () => animate(element, { y: 0, scale: 1 }, { duration: 0.24, easing: [0.22, 1, 0.36, 1] });
     });
   });
 }
@@ -58,6 +64,14 @@ if (!reduceMotion && gsap && ScrollTrigger && Lenis) {
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add(time => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
+
+  const initialHashTarget = window.location.hash ? document.querySelector(window.location.hash) : null;
+  if (initialHashTarget) {
+    window.addEventListener('load', () => {
+      lenis.scrollTo(initialHashTarget, { immediate: true, offset: -76, force: true });
+      ScrollTrigger.refresh();
+    }, { once: true });
+  }
 
   const splitWords = element => {
     const walk = node => {
@@ -85,7 +99,13 @@ if (!reduceMotion && gsap && ScrollTrigger && Lenis) {
     return element.querySelectorAll('.word-reveal');
   };
 
-  const textTargets = document.querySelectorAll('.hero h1, .section-heading h2, .section-heading > p:last-child, .about h2, .about-lead, .contact h2');
+  const heroWords = splitWords(document.querySelector('.hero h1'));
+  gsap.fromTo(heroWords,
+    { opacity: 0, yPercent: 70 },
+    { opacity: 1, yPercent: 0, duration: 0.72, stagger: 0.055, delay: 0.15, ease: 'power3.out' }
+  );
+
+  const textTargets = document.querySelectorAll('.section-heading h2, .section-heading > p:last-child, .what-i-do__heading h2, .methods-heading h2, .contact h2');
   textTargets.forEach(element => {
     const words = splitWords(element);
     gsap.fromTo(words,
